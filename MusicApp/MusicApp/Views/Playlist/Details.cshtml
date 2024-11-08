@@ -1,0 +1,51 @@
+﻿@model MusicApp.Models.PlaylistWithTracksViewModel
+
+@{
+    ViewBag.Title = "Playlists";
+}
+
+
+<h2>Playlist details @Model.Name</h2>
+<hr />
+<p>
+    @Html.ActionLink("Edit", "EditPlaylist", new { id = Model.PlaylistId }, new { style = "text-decoration:none" }) |
+    @Html.ActionLink("Back to List", "Index", null, new { style = "text-decoration:none" })
+</p>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2 text-end">
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+
+    <dt class="col-sm-2 text-end">
+        Tracks on the Playlist
+    </dt>
+
+    <dd class="col-sm-10">
+        <span class="badge bg-secondary">@Html.DisplayFor(model => model.TracksCount)</span>
+    </dd>
+
+    <dt class="col-sm-2"></dt>
+    <dd class="col-sm-10">
+            @if (Model.TracksCount > 0)
+            {
+                foreach (var track in Model.Tracks)
+                {
+                    <span>@track.Name</span><br />
+                }
+            }
+            else
+            {
+                <span>No tracks in this playlist</span>
+            }
+    </dd>       
+</dl>
+
+<p>
+    @Html.ActionLink("Edit", "EditPlaylist", new { id = Model.PlaylistId }, new { style = "text-decoration:none" }) |
+    @Html.ActionLink("Back to List", "Index", null, new { style = "text-decoration:none" })
+</p>
